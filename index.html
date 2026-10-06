@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Calculator & RPG Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Smart Calculator</h1>
+        <div class="tabs">
+            <button class="tab-btn active" data-target="calc-tab">Konversi</button>
+            <button class="tab-btn" data-target="sci-tab">Saintifik</button>
+            <button class="tab-btn" data-target="practice-tab">Latihan</button>
+            <button class="tab-btn" data-target="profile-tab">Profil</button>
+        </div>
+
+        <!-- TAB KONVERSI -->
+        <div id="calc-tab" class="tab-content active">
+            <div class="input-group">
+                <label for="dec-input">Desimal</label>
+                <input type="text" id="dec-input" placeholder="Masukkan angka desimal">
+            </div>
+            <div class="input-group">
+                <label for="bin-input">Biner</label>
+                <input type="text" id="bin-input" placeholder="Masukkan angka biner">
+            </div>
+            <div class="input-group">
+                <label for="oct-input">Oktal</label>
+                <input type="text" id="oct-input" placeholder="Masukkan angka oktal">
+            </div>
+            <div class="input-group">
+                <label for="hex-input">Hexadesimal</label>
+                <input type="text" id="hex-input" placeholder="Masukkan angka hexadesimal">
+            </div>
+        </div>
+
+        <!-- TAB SAINTIFIK -->
+        <div id="sci-tab" class="tab-content">
+            <div class="input-group">
+                <input type="text" id="sci-display" placeholder="0" readonly>
+            </div>
+            <div class="sci-keypad">
+                <button class="sci-btn func" data-value="sin(">sin</button>
+                <button class="sci-btn func" data-value="cos(">cos</button>
+                <button class="sci-btn func" data-value="tan(">tan</button>
+                <button class="sci-btn action" data-action="clear">C</button>
+                <button class="sci-btn action" data-action="delete">DEL</button>
+
+                <button class="sci-btn func" data-value="log(">log</button>
+                <button class="sci-btn func" data-value="ln(">ln</button>
+                <button class="sci-btn func" data-value="√(">√</button>
+                <button class="sci-btn operator" data-value="^">^</button>
+                <button class="sci-btn operator" data-value="÷">÷</button>
+
+                <button class="sci-btn num" data-value="7">7</button>
+                <button class="sci-btn num" data-value="8">8</button>
+                <button class="sci-btn num" data-value="9">9</button>
+                <button class="sci-btn operator" data-value="(">(</button>
+                <button class="sci-btn operator" data-value=")">)</button>
+
+                <button class="sci-btn num" data-value="4">4</button>
+                <button class="sci-btn num" data-value="5">5</button>
+                <button class="sci-btn num" data-value="6">6</button>
+                <button class="sci-btn operator" data-value="×">×</button>
+                <button class="sci-btn func" data-value="π">π</button>
+
+                <button class="sci-btn num" data-value="1">1</button>
+                <button class="sci-btn num" data-value="2">2</button>
+                <button class="sci-btn num" data-value="3">3</button>
+                <button class="sci-btn operator" data-value="-">-</button>
+                <button class="sci-btn func" data-value="e">e</button>
+
+                <button class="sci-btn num" data-value="0" style="grid-column: span 2;">0</button>
+                <button class="sci-btn num" data-value=".">.</button>
+                <button class="sci-btn equal" data-action="calculate" style="grid-column: span 2;">=</button>
+                <button class="sci-btn operator" data-value="+">+</button>
+            </div>
+        </div>
+
+        <!-- TAB LATIHAN -->
+        <div id="practice-tab" class="tab-content">
+            <div class="practice-card">
+                <div class="input-group">
+                    <label for="practice-type">Pilih Tipe Soal:</label>
+                    <select id="practice-type" class="practice-select">
+                        <option value="konversi">🔄 Konversi Angka</option>
+                        <option value="aritmatika">🧮 Aritmatika Dasar</option>
+                        <option value="saintifik">🔬 Saintifik (Akar & Pangkat)</option>
+                    </select>
+                </div>
+                
+                <h2 id="question-text" style="margin-top:20px;">Konversi dari ... ke ...</h2>
+                <h3 id="question-number" class="highlight-number">0</h3>
+                <input type="text" id="answer-input" placeholder="Ketik jawaban Anda">
+                <button id="submit-answer" class="btn">Cek Jawaban</button>
+                <button id="next-question" class="btn btn-secondary" style="display:none;">Soal Berikutnya</button>
+                <p id="feedback-text"></p>
+            </div>
+        </div>
+
+        <!-- TAB PROFIL -->
+        <div id="profile-tab" class="tab-content">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <div id="current-avatar" class="avatar-badge level-0">🌱</div>
+                </div>
+                <div class="profile-info">
+                    <h3 id="profile-level-title">Novice Calculator</h3>
+                    <p>Total Soal Terjawab: <span id="total-solved">0</span> / 500</p>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="avatar-shop-section">
+                <h4 style="color: var(--baltic); margin-bottom: 10px;">Koleksi & Kustomisasi Foto Profil (Avatar)</h4>
+                <div id="avatar-grid" class="avatar-grid">
+                    <!-- Rendered via JS -->
+                </div>
+            </div>
+
+            <div class="stat-category" style="margin-top: 15px;">
+                <h3 class="stat-title">🔄 Konversi Angka</h3>
+                <div class="stats-row">
+                    <div class="stat-item">Benar: <span id="konv-benar" class="text-success">0</span></div>
+                    <div class="stat-item">Salah: <span id="konv-salah" class="text-danger">0</span></div>
+                    <div class="stat-item">Akurasi: <span id="konv-akurasi">0%</span></div>
+                </div>
+            </div>
+
+            <div class="stat-category">
+                <h3 class="stat-title">🧮 Aritmatika Dasar</h3>
+                <div class="stats-row">
+                    <div class="stat-item">Benar: <span id="arit-benar" class="text-success">0</span></div>
+                    <div class="stat-item">Salah: <span id="arit-salah" class="text-danger">0</span></div>
+                    <div class="stat-item">Akurasi: <span id="arit-akurasi">0%</span></div>
+                </div>
+            </div>
+
+            <div class="stat-category">
+                <h3 class="stat-title">🔬 Saintifik Dasar</h3>
+                <div class="stats-row">
+                    <div class="stat-item">Benar: <span id="sci-benar" class="text-success">0</span></div>
+                    <div class="stat-item">Salah: <span id="sci-salah" class="text-danger">0</span></div>
+                    <div class="stat-item">Akurasi: <span id="sci-akurasi">0%</span></div>
+                </div>
+            </div>
+
+            <button id="reset-stats" class="btn btn-danger">Reset Semua Statistik</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
